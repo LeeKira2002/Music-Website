@@ -1,0 +1,213 @@
+:root {
+    --primary-color: #ec1f55;
+    --text-color: #333;
+}
+* { /*Đây là một lựa chọn thẻ, áp dụng cho tất cả các phần tử trên trang web.*/
+    padding: 0; /*Thiết lập giá trị padding (khoảng cách bên trong phần tử) của tất cả các phần tử là 0. 
+    Điều này loại bỏ mọi khoảng trống bên trong các phần tử.*/
+    margin: 0; /*hiết lập giá trị margin (khoảng cách xung quanh phần tử) của tất cả các phần tử là 0. 
+    Điều này loại bỏ mọi khoảng trống giữa các phần tử.*/
+    box-sizing: inherit; /*các phần tử sẽ kế thừa giá trị của thuộc tính box-sizing từ phần tử cha trực tiếp
+    của chúng. Thuộc tính box-sizing quy định cách tính toán kích thước của một phần tử và làm cho việc thiết
+     kế trang web dễ dàng hơn.*/
+}
+body{
+    background-color: #679cec;
+    background-size: cover; /*Đặt kích thước của hình nền sao cho nó che phủ hoàn toàn phần nền của phần tử
+    <body>. Nếu kích thước hình nền lớn hơn phần tử <body>, hình nền sẽ bị thu nhỏ để phù hợp. Nếu kích thước 
+    hình nền nhỏ hơn, hình nền sẽ được mở rộng để phù hợp.*/
+    background-position: center; /*Đặt vị trí xuất phát của hình nền là trung tâm của phần tử <body>. 
+    Điều này có nghĩa là hình nền sẽ được căn giữa theo chiều ngang và chiều dọc của phần tử <body>, 
+    đảm bảo rằng nó được hiển thị ở trung tâm của trang web.*/
+}
+html {
+    box-sizing: border-box; /*khi bạn đặt kích thước cho một phần tử và thêm padding hoặc border, kích thước 
+    tổng của phần tử sẽ không thay đổi. Thay vào đó, padding và border sẽ được tính vào bên trong kích thước đã đặt.*/
+    font-family: "Poppins", sans-serif; /*font chữ được sử dụng là "Poppins", nếu font này không có sẵn, trình 
+    duyệt sẽ chuyển sang sử dụng một font kiểu "sans-serif" (như Arial, Helvetica) như một lựa chọn thay thế.*/
+}
+.player {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+.player .icon-pause{
+    display: none;
+}
+.player.playing .icon-pause { 
+    display: inline-block; /*tức là nó sẽ hiển thị như một phần tử inline, nhưng vẫn có thể áp dụng các 
+    thuộc tính về kích thước và khoảng cách của một phần tử block. */
+}
+.player.playing .icon-play{
+    display: none;
+}
+.dashboard{
+    padding: 16px 16px 14px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 480px;
+    border-bottom: 1px solid #ebebeb;
+    border-radius: 10px;
+}
+/*HEADER*/
+header h1{
+    color: var(--primary-color);
+    font-size: 30px;
+    text-align: center;
+}
+header h2 {
+    color: var(--text-color);
+    font-size: 20px;
+    text-align: center;
+}
+/*CD*/
+.cd {
+    display: flex;
+    margin: auto;
+    width: 200px;
+}
+.cd-thumb {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    background-size: cover; /*Biến lại 1 hình*/
+    margin: auto;
+}
+/*Control*/
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0 8px 0;
+}
+.control .btn{
+    color: #666;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.control .btn-toggle-play {
+    background-color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    font-size: 27px;
+}
+.progress{
+    width: 100%;
+    background: var(--primary-color);
+}
+.progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+div.btn.btn-toggle-volume {
+    position: absolute;
+}
+
+.btn-toggle-volume {
+    position: relative;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.btn-toggle-volume .icon-mute+.icon-unmute {
+    position: absolute;
+}
+
+.btn-toggle-volume:hover .volume-bar {
+    visibility: visible;
+    opacity: 0.7;
+}
+
+.volume-bar {
+    position: absolute;
+    transform: rotate(-90deg);
+    margin: -50px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    width: 70px;
+    height: 20px;
+    cursor: pointer;
+}
+
+
+.btn-toggle-volume .icon-mute {
+    visibility: hidden;
+}
+
+.btn-toggle-volume.showing .icon-mute {
+    visibility: visible;
+}
+
+.btn-toggle-volume.showing .icon-unmute {
+    visibility: hidden;
+}
+/* lỗi chưa hiển thị được icon mute và unmute*/
+
+/*PLAYLIST*/
+.playlist {
+    margin-top: 480px;
+    padding: 12px;
+}
+.song {
+    display: flex;
+    margin-bottom: 12px;
+    align-items: center;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+.song.active {
+    background-color: var(--primary-color);
+}
+.song:active{
+    opacity: 0.8;
+}
+.song.active .option, .song.active .author, .song.active .title {
+    color: #fff;
+}
+.song .thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-size: cover;
+    margin: 0 8px;
+}
+.song .body {
+    flex: 1; /*Đưa 3 chấm nằm ngang sang sát bên phải*/
+    padding: 0 16px;
+}
+.song .title{
+    font-size: 18px;
+    color: black;
+}
+.song .author {
+    font-size: 12px;
+    color: black;
+}
+.song .option {
+    padding: 16px 8px;
+    color: black;
+}
+.playlist, .song {
+    background-color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+}
