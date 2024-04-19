@@ -148,6 +148,7 @@ const app = {
         };
         //Khi song được play
         audio.onplay = function (){
+            audio.volume = app.savedVolume;
             _this.isPlaying = true;
             player.classList.add("playing");
             cdThumbAnimate.play();
@@ -176,6 +177,7 @@ const app = {
         };
         //Khi next song
         nextBtn.onclick = function () {
+            audio.volume = app.savedVolume;
             if(_this.isRandom) {
                 _this.playRandomSong();
             } else {
@@ -187,6 +189,7 @@ const app = {
         };
         //Khi prev song
         prevBtn.onclick = function () {
+            audio.volume = app.savedVolume;
             if (_this.isRandom) {
                 _this.playRandomSong();
             } else {
@@ -308,12 +311,15 @@ const app = {
         }
     },
     scrollToActiveSong: function () {
-        setTimeout(() => {
-          $(".song.active").scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-          });
-        }, 300);
+        const activeSong = $(".song.active");
+        if (activeSong) {
+            setTimeout(() => {
+                activeSong.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+            }, 300);
+        }
     },
     loadCurrentSong: function () {
         heading.textContent = this.currentSong.name;
