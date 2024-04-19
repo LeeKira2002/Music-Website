@@ -316,7 +316,7 @@ const app = {
             setTimeout(() => {
                 activeSong.scrollIntoView({
                     behavior: "smooth",
-                    block: "nearest"
+                    block: "center"
                 });
             }, 300);
         }
@@ -324,7 +324,8 @@ const app = {
     loadCurrentSong: function () {
         heading.textContent = this.currentSong.name;
         cdthumb.style.backgroundImage = `url('${this.currentSong.image}')`;
-        audio.src = this.currentSong.path;         
+        audio.src = this.currentSong.path;        
+        this.setConfig('currentIndex', this.currentIndex);
     },
     loadConfig: function () {
         this.isRandom = this.config.isRandom;
