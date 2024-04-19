@@ -296,19 +296,28 @@ const app = {
             }
         }
         volumeBar.oninput = e => {
-            this.setConfig('curentVolume', e.target.value)
+            this.setConfig('currentVolume', e.target.value)
             audio.volume = volumeBar.value;
-            volumeBar.setAttibute('title', 'Âm lượng' + volumeBar.value * 100 + "%");
+            volumeBar.setAttribute('title', 'Âm lượng ' + volumeBar.value * 100 + "%");
         }
-        unmuteIcon.onclick = e => {
-            this.setConfig('savedVolume', audio.volume);
+        unmuteIcon.onclick = function () {
+            app.setConfig('savedVolume', audio.volume);
             audio.volume = 0;
-            this.setConfig('currentVolume', audio.volume);
-        }
-        muteIcon.onclick = e => {
-            audio.volume = this.config.savedVolume;
-            this.setConfig('currentVolume', audio.volume);
-        }
+            app.setConfig('currentVolume', audio.volume);
+        
+            // Ẩn icon unmute và hiển thị icon mute
+            muteIcon.style.visibility = 'visible';
+            unmuteIcon.style.visibility = 'hidden';
+        };
+        
+        muteIcon.onclick = function () {
+            audio.volume = app.config.savedVolume;
+            app.setConfig('currentVolume', audio.volume);
+        
+            // Ẩn icon mute và hiển thị icon unmute
+            muteIcon.style.visibility = 'hidden';
+            unmuteIcon.style.visibility = 'visible';
+        };
     },
     scrollToActiveSong: function () {
         const activeSong = $(".song.active");

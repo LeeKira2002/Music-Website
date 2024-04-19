@@ -43,12 +43,12 @@ html {
     display: none;
 }
 .dashboard{
-    padding: 16px 16px 14px;
+    padding: 16px 25px 14px;
     background-color: #fff;
     position: fixed;
     top: 0;
     width: 100%;
-    max-width: 480px;
+    max-width: 500px;
     border-bottom: 1px solid #ebebeb;
     border-radius: 10px;
 }
@@ -124,6 +124,9 @@ div.btn.btn-toggle-volume {
     justify-content: center;
     display: flex;
     cursor: pointer;
+    top: 10;
+    bottom: 10px;
+    
 }
 
 .btn-toggle-volume .icon-mute+.icon-unmute {
@@ -150,6 +153,7 @@ div.btn.btn-toggle-volume {
 
 .btn-toggle-volume .icon-mute {
     visibility: hidden;
+    margin-bottom: 50px;
 }
 
 .btn-toggle-volume.showing .icon-mute {
