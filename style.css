@@ -28,7 +28,7 @@ html {
 }
 .player {
     position: relative;
-    max-width: 480px;
+    max-width: 500px;
     margin: 0 auto;
     border-radius: 10px;
 }
@@ -125,7 +125,9 @@ div.btn.btn-toggle-volume {
     display: flex;
     cursor: pointer;
     top: 10;
-    bottom: 10px;
+    bottom: 12px;
+    left: 450px;
+    right: 10px;
     
 }
 
