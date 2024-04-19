@@ -373,6 +373,16 @@ const app = {
         // Load the first song information into the UI when running the app
         this.loadCurrentSong();
 
+         // Thiết lập giá trị volume thành 100
+        this.currentVolume = 1; // hoặc this.currentVolume = 100;
+         // Kiểm tra xem audio đã được tải chưa trước khi cập nhật giá trị volume
+        if (audio.readyState >= 2) {
+            audio.volume = this.currentVolume;
+        } else {
+            audio.onloadedmetadata = () => {
+            audio.volume = this.currentVolume;
+        };
+    }
         // Render playlist
         this.render();
 
