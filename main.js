@@ -59,34 +59,34 @@ const app = {
             image: "https://avatar-ex-swe.nixcdn.com/mv/2016/06/03/6/2/c/e/1464927555680_268.jpg"
         },
         {
-            name: "Da Da Da",
-            singer: "Mikis Remix DJ",
-            path: "./assets/music/dadada.mp3",
-            image: "https://avatar-ex-swe.nixcdn.com/song/2023/09/20/2/2/5/5/1695200678323.jpg"
+            name: "Haru Haru",
+            singer: "BingBang",
+            path: "./assets/music/haruharu.mp3",
+            image: "https://avatar-ex-swe.nixcdn.com/song/2020/06/09/2/d/0/7/1591688793624.jpg"
         },
         {
-            name: "See you again",
-            singer: "Kurt Hugo Schneider, Eppic, Alex Goot",
-            path: "./assets/music/seeyouagain.mp3",
-            image: "https://avatar-ex-swe.nixcdn.com/song/2023/03/23/3/e/3/6/1679559159635.jpg"
+            name: "Suýt nữa thì",
+            singer: "Andiez",
+            path: "./assets/music/suytnuathi.mp3",
+            image: "https://avatar-ex-swe.nixcdn.com/song/2018/07/19/6/0/9/e/1532010326915.jpg"
         },
         {
-            name: "The Spectre",
-            singer: "Alan Walker",
-            path: "./assets/music/thespectre.mp3",
-            image: "https://avatar-ex-swe.nixcdn.com/mv/2017/09/15/8/0/a/2/1505460794038_268.jpg"
+            name: "Giúp anh trả lời những câu hỏi",
+            singer: "Vương Anh Tú",
+            path: "./assets/music/giupanhtraloinhungcauhoi.mp3",
+            image: "https://avatar-ex-swe.nixcdn.com/song/2023/04/20/e/4/0/a/1682004968585.jpg"
         },
         {
-            name: "Faded",
-            singer: " Alan Walker, Iselin Solheim",
-            path: "./assets/music/faded.mp3",
-            image: "https://avatar-ex-swe.nixcdn.com/mv/2016/04/05/8/5/6/0/1459846639845_268.jpg"
+            name: "Thu cuối",
+            singer: "Yanbi, Hằng BingBoong, MrT",
+            path: "./assets/music/thucuoi.mp3",
+            image: "https://avatar-ex-swe.nixcdn.com/song/2023/09/20/2/2/5/5/1695201951760.jpg"
         },
         {
-            name: "Sing Me To Sleep",
-            singer: "Alan Walker",
-            path: "./assets/music/singmetosleep.mp3",
-            image: "https://avatar-ex-swe.nixcdn.com/mv/2016/06/03/6/2/c/e/1464927555680_268.jpg"
+            name: "Xứng đôi cưới thôi",
+            singer: "Lê Thiện Hiếu",
+            path: "./assets/music/xungdoicuoithoi.mp3",
+            image: "https://avatar-ex-swe.nixcdn.com/song/2019/06/28/7/b/d/d/1561696223026.jpg"
         }
     ],
     setConfig: function(key, value) {
@@ -353,11 +353,22 @@ const app = {
             this.loadCurrentSong();
         }
     },
+    playedSongs: []
+    ,
     playRandomSong: function () {
+        // Kiểm tra nếu đã phát đủ tất cả các bài hát
+        if (this.playedSongs.length === this.songs.length) {
+            // Xóa mảng để bắt đầu lại từ đầu
+            this.playedSongs = [];
+        }
+
         let newIndex;
         do {
             newIndex = Math.floor(Math.random() * this.songs.length);
-        } while(newIndex === this.currentIndex);
+        } while(this.playedSongs.includes(newIndex)); // Kiểm tra chỉ mục đã được phát chưa
+
+        // Thêm chỉ mục mới vào mảng
+        this.playedSongs.push(newIndex);
 
         this.currentIndex = newIndex;
         this.loadCurrentSong();
