@@ -180,6 +180,7 @@ div.btn.btn-toggle-volume {
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
 }
 .song.active {
     background-color: var(--primary-color);
@@ -212,6 +213,7 @@ div.btn.btn-toggle-volume {
 .song .option {
     padding: 16px 8px;
     color: black;
+    cursor: pointer;
 }
 .playlist, .song {
     background-color: rgba(255, 255, 255, 0.8);

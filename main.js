@@ -1,6 +1,8 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+const PlAYER_STORAGE_KEY = 'KIRA_PLAYER'
+
 const player = $('.player');
 const playlist = $('.playlist');
 const cd = $('.cd');
@@ -98,7 +100,7 @@ const app = {
     render: function() {
         const htmls = this.songs.map((song, index) => {
             return `
-            <div class="song ${index === this.currentIndex ? 'active' : ''}">
+            <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index="${index}">
                 <div class="thumb" style="background-image: url('${song.image}')"></div>
                 <div class="body">
                     <h3 class="title">${song.name}</h3>
@@ -242,6 +244,7 @@ const app = {
                 nextBtn.click();
             }
         };
+        
         //Lắng nghe hành vi click vào playlist
         playlist.onclick = function (e) {
             const songNode = e.target.closest(".song:not(.active)");
